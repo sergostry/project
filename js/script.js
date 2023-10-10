@@ -1,23 +1,19 @@
 "use strict";
 
-let numberOfFilms;
-
-function start() {
-    numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-
-    while (numberOfFilms == ''|| numberOfFilms == null || isNaN(numberOfFilms)) {
-        numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
-    }
-}
-
-start();
 
 const personalMoviesDB = {
-    count: numberOfFilms,
+    count: 0,
     movies: {},
     actors: {},
     genres: [],
-    privat: false
+    privat: false,
+    start: function() {
+        personalMoviesDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+    
+        while (personalMoviesDB.count == ''|| personalMoviesDB.count == null || isNaN(personalMoviesDB.count)) {
+            personalMoviesDB.count = +prompt('Сколько фильмов вы уже посмотрели?', '');
+        }
+    }
 };
 
 function rememberMyFilms() {
@@ -67,3 +63,35 @@ function writeYouGeners() {
 }
 
 writeYouGeners();
+
+const options = {
+    name: 'test',
+    width: 1024,
+    height: 1024,
+    colors: {
+        border: 'black',
+        bg: "red"
+    },
+    
+    makeTest: function() {
+        console.log("Test");
+    }
+}
+
+options.makeTest();
+
+
+for (let key in options) {
+    console.log(`Свойство ${key}, имеет значение ${options[key]}`);
+    if (typeof(options[key]) === 'object') {
+        for (let i in options[key]) {
+            console.log(`Свойство ${i}, имеет значение - ${options[key][i]}`);
+
+        }
+    } else {
+        console.log(`Свойство ${key}, имеет значение - ${options[key]}`);
+    }  
+
+}
+
+console.log(Object.keys(options).length);
